@@ -23,7 +23,7 @@ end
 
 describe 'the project update path', {:type => :feature} do
   it 'allows a user to change the name of the project' do
-    test_project = Project.new({:title => 'Teaching Kids to Code'})
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
     visit '/'
     click_link('Teaching Kids to Code')
@@ -38,7 +38,7 @@ end
 
 describe 'the project delete path', {:type => :feature} do
   it 'allows a user to delete a project' do
-    test_project = Project.new({:title => 'Teaching Kids to Code'})
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
     id = test_project.id
     visit "/projects/#{id}/edit"
@@ -52,10 +52,10 @@ end
 
 describe 'the volunteer detail page path', {:type => :feature} do
   it 'shows a volunteer detail page' do
-    test_project = Project.new({:title => 'Teaching Kids to Code'})
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
     project_id = test_project.id.to_i
-    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id})
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
     test_volunteer.save
     visit "/projects/#{project_id}"
     click_link('Jasmine')
