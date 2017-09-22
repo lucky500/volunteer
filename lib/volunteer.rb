@@ -10,10 +10,14 @@ class Volunteer
     returned_volunteers = DB.exec("SELECT * FROM volunteers;")
     volunteers = []
     returned_volunteers.each() do |volunteer|
-      name = task.fetch("name")
+      name = volunteer.fetch("name")
       volunteers.push(Volunteer.new({:name => name}))
     end
     volunteers
+  end
+
+  def save
+    DB.exec("INSERT INTO volunteers (name) VALUES ('#{@name}')")
   end
 
   def ==(another_volunteer)

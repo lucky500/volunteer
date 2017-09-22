@@ -38,7 +38,7 @@ describe Volunteer do
     it 'is empty to start' do
       expect(Volunteer.all).to eq []
     end
-  
+
 
   xit 'returns all volunteers' do
       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
@@ -49,11 +49,11 @@ describe Volunteer do
     end
   end
 
-  xdescribe '#save' do
+  describe('#save') do
     it 'adds a volunteer to the database' do
-      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1 = Volunteer.new({:name => 'John'})
       volunteer1.save
-      expect(Volunteer.all).to eq [volunteer1]
+      expect(Volunteer.all).to(eq([volunteer1]))
     end
   end
 
