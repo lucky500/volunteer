@@ -1,15 +1,4 @@
-require('rspec')
-require('pg')
-require('project')
-require('pry')
-
-DB = PG.connect({:dbname => 'volunteer_tracker_test'})
-
-RSpec.configure do |config|
-  config.after(:each) do
-    DB.exec("DELETE FROM projects *;")
-  end
-end
+require('spec_helper')
 
 describe(Project) do
   describe('#title') do
@@ -22,8 +11,8 @@ describe(Project) do
   context('#id') do
     it 'returns the id of the project before saving project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-      project.save()
-      expect(project.id).to(be_an_instance_of(Fixnum))
+      # project.save()
+      expect(project.id).to(eq(nil))
     end
 
     xit 'returns the id of the project after saving project' do
