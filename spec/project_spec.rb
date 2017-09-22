@@ -19,11 +19,11 @@ describe(Project) do
     end
   end
 
-  xcontext('#id') do
+  context('#id') do
     it 'returns the id of the project before saving project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save()
-      expect(project.id).to(eq(nil))
+      expect(project.id).to(be_an_instance_of(Fixnum))
     end
 
     xit 'returns the id of the project after saving project' do
@@ -33,7 +33,7 @@ describe(Project) do
     end
   end
 
-  xdescribe '#==' do
+  describe '#==' do
     it 'is the same project if two projects have the same title' do
       project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project2 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
