@@ -1,21 +1,34 @@
-require "spec_helper"
+require('rspec')
+#require('pg')
+require('volunteer')
+require('pry')
+
+#DB = PG.connect({:dbname => 'volunteer_tracker_test'})
+
 
 describe Volunteer do
-  describe '#name' do
+  describe 'attributes' do
+    it 'allows reading and writing for :name'
+    volunteer = Volunteer.new()
+    volunteer.name = "John"
+    expect(volunteer.name).to(eq("John"))
+  end
+
+  xdescribe '#name' do
     it 'returns the name of the volunteer' do
       test_volunteer = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       expect(test_volunteer.name).to eq 'Jane'
     end
   end
 
-  describe '#project_id' do
+  xdescribe '#project_id' do
     it 'returns the project_id of the volunteer' do
       test_volunteer = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       expect(test_volunteer.project_id).to eq 1
     end
   end
 
-  describe '#==' do
+  xdescribe '#==' do
     it 'checks for equality based on the name of a volunteer' do
       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       volunteer2 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
@@ -23,7 +36,7 @@ describe Volunteer do
     end
   end
 
-  context '.all' do
+  xcontext '.all' do
     it 'is empty to start' do
       expect(Volunteer.all).to eq []
     end
@@ -37,7 +50,7 @@ describe Volunteer do
     end
   end
 
-  describe '#save' do
+  xdescribe '#save' do
     it 'adds a volunteer to the database' do
       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       volunteer1.save
@@ -45,7 +58,7 @@ describe Volunteer do
     end
   end
 
-  describe '.find' do
+  xdescribe '.find' do
     it 'returns a volunteer by id' do
       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       volunteer1.save
