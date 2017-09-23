@@ -29,7 +29,7 @@ describe(Volunteer) do
     end
 
 
-  xit 'returns all volunteers' do
+  it 'returns all volunteers' do
       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       volunteer1.save
       volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 1, :id => nil})

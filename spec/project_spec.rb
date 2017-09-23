@@ -11,11 +11,10 @@ describe(Project) do
   context('#id') do
     it 'returns the id of the project before saving project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-      # project.save()
       expect(project.id).to(eq(nil))
     end
 
-    xit 'returns the id of the project after saving project' do
+    it 'returns the id of the project after saving project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save
       expect(project.id).to be_an_instance_of Integer
@@ -35,7 +34,7 @@ describe(Project) do
       expect(Project.all).to(eq([]))
     end
 
-    xit 'returns all projects' do
+    it 'returns all projects' do
       project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project1.save
       project2 = Project.new({:title => 'Teaching Ruby to Kids', :id => nil})
@@ -44,7 +43,7 @@ describe(Project) do
     end
   end
 
-  xdescribe('#save') do
+  describe('#save') do
     it 'saves a project to the database' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save()
