@@ -54,9 +54,34 @@ get('/projects/:id/edit') do
   erb(:project_edit)
 end
 
+get('/volunteers/:id/edit') do
+  @volunteer = Volunteer.find(params.fetch("id").to_i())
+  erb(:volunteer)
+end
+
 patch('/projects/:id') do
   title = params.fetch('title')
   @project = Project.find(params.fetch("id").to_i())
   @project.update({:title => title})
   erb(:project)
 end
+
+patch('/volunteers/:id') do
+  name = params.fetch('name')
+  @volunteer = Volunteer.find(params.fetch("id").to_i())
+  @volunteer.update({:name => name})
+  erb(:volunteer)
+end
+
+delete('/projects/:id') do
+  @project = Project.find(params.fetch("id").to_i())
+  @project.delete()
+  @projects = Project.all()
+  erb(:index)
+end
+
+# delete('/volunteers/:id') do
+#   @volunteer = Volunteer.find(params.fetch("id").to_i())
+#   @volunteer.delete()
+#   erb(:index)
+# end
