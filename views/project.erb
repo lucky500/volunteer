@@ -8,7 +8,7 @@
   <h3>Here are all the volunteers for this project:</h3>
   <ul>
     <% @project.volunteers().each() do |volunteer| %>
-    <li><%= volunteer.name() %></li>
+    <li><a href="#"><%= volunteer.name() %></a></li>
     <% end %>
   </ul>
   <% else %>
