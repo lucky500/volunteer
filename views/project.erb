@@ -1,7 +1,7 @@
 <h1><%= @project.title() %></h1>
 
 <p>
-  <a href="/projects/<%= @project.id() %>/edit">Edit Project</a>
+  <a href="/projects/<%= @project.id() %>/edit">Edit Project: <%= @project.title() %></a>
 </p>
 
 <% if @project.volunteers().any?() %>
@@ -27,5 +27,5 @@
 </form>
 
 <div class="container">
-  <a href="/">Home</a>
+  <p>Return to <a href="/">Home</a></p>
 </div>

@@ -1,7 +1,6 @@
 require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
-# require('./lib/item')
 require('./lib/volunteer')
 require('./lib/project')
 require("pg")
@@ -36,7 +35,7 @@ get('/projects/:id') do
 end
 
 post('/projects/:id') do
-  @project = Project.find(params.fetch(:id).to_i())
+  @project = Project.find(params.fetch("id").to_i())
   name = params.fetch("name")
   project_id = params.fetch("id").to_i()
   @volunteer = Volunteer.new({:name => name, :project_id => project_id, :id => nil})
@@ -50,8 +49,14 @@ get('/volunteers/:id') do
   erb(:volunteer)
 end
 
-#
-# get('/projects/:id/edit') do
-#   @project = Project.find(params.fetch("id").to_i())
-#   erb(:project_edit)
-# end
+get('/projects/:id/edit') do
+  @project = Project.find(params.fetch("id").to_i())
+  erb(:project_edit)
+end
+
+patch('/projects/:id') do
+  title = params.fetch('title')
+  @project = Project.find(params.fetch("id").to_i())
+  @project.update({:title => title})
+  erb(:project)
+end
