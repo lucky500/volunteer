@@ -51,7 +51,7 @@ describe(Project) do
     end
   end
 
-  xdescribe '.find' do
+  describe '.find' do
     it 'returns a project by id' do
       project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project1.save
@@ -61,7 +61,7 @@ describe(Project) do
     end
   end
 
-  xdescribe '#volunteers' do
+  describe '#volunteers' do
     it 'returns all volunteers for a specific project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save
@@ -73,7 +73,7 @@ describe(Project) do
     end
   end
 
-  xdescribe '#update' do
+  describe '#update' do
     it 'allows a user to update a project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save

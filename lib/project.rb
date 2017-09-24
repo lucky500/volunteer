@@ -6,6 +6,11 @@ class Project
     @id = attributes.fetch(:id)
   end
 
+  def save
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end
+
   def self.all
     returned_projects = DB.exec("SELECT * FROM projects;")
     projects = []
@@ -14,12 +19,36 @@ class Project
       id = project.fetch("id").to_i()
       projects.push(Project.new({:title => title, :id => id}))
     end
-      projects
+    projects
   end
 
-  def save
-    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
-    @id = result.first().fetch("id").to_i()
+
+  def self.find(id)
+    found_project = nil
+    Project.all().each() do |project|
+      if project.id().==(id)
+        found_project = project
+      end
+    end
+    found_project
+  end
+
+  def volunteers
+    list_volunteers = []
+    volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{@id};")
+    volunteers.each() do |volunteer|
+      name = volunteer.fetch("name")
+      project_id = volunteer.fetch("project_id").to_i()
+      id = volunteer.fetch("id").to_i()
+      list_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id}))
+    end
+    list_volunteers
+  end
+
+  def update(attributes)
+    @title = attributes.fetch(:title)
+    @id = self.id
+    DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
   end
 
   def ==(another_project)
